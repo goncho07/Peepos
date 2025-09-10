@@ -90,6 +90,8 @@ class PermissionSeeder extends Seeder
             'enrollments.edit',
             'enrollments.delete',
             'enrollments.manage',
+            'enrollment.view',
+            'enrollment.review',
 
             // Comunicaciones
             'communications.view',
@@ -98,6 +100,10 @@ class PermissionSeeder extends Seeder
             'communications.delete',
             'communications.manage',
             'communications.send',
+            'communication.access',
+
+            // Gestión Académica
+            'academic.view',
 
             // Reportes
             'reports.view',

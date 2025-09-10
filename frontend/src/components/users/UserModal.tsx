@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, User, Mail, Phone, MapPin, Calendar, Shield, Upload, Eye, EyeOff } from 'lucide-react';
 import { Button, Card, Input } from '../ui';
 import { useRoles, usePermissions } from '../../hooks/useRolePermissions';
+import { AREAS_LIST } from '../../config/constants';
 
 interface UserFormData {
   dni: string;
@@ -28,17 +29,8 @@ interface UserModalProps {
   mode: 'create' | 'edit';
 }
 
-// Datos hardcodeados eliminados - ahora se obtienen del backend
-const areas = [
-  'Dirección',
-  'Académico',
-  'Administración',
-  'Recursos Humanos',
-  'Sistemas',
-  'Contabilidad',
-  'Secretaría',
-  'Mantenimiento'
-];
+// Usar constantes centralizadas en lugar de datos hardcodeados
+const areas = AREAS_LIST;
 
 const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, onSave, user, mode }) => {
   // Obtener datos del backend

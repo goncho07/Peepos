@@ -92,7 +92,7 @@ class AuthController extends Controller
                     ],
                     'token' => $token,
                     'token_type' => 'Bearer',
-                    'expires_in' => config('sanctum.expiration', 525600) * 60,
+                    'expires_in' => (int) config('sanctum.expiration', 525600) * 60,
                 ]
             ]);
         } catch (\Exception $e) {

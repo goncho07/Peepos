@@ -278,7 +278,8 @@ export const EnrollmentPage: React.FC = () => {
       
       success('Matrícula registrada exitosamente');
       setCurrentStep(4);
-    } catch (error) {
+    } catch (err) {
+      console.error('Error al procesar la matrícula:', err);
       error('Error al procesar la matrícula');
     } finally {
       setIsSubmitting(false);
@@ -610,7 +611,7 @@ export const EnrollmentPage: React.FC = () => {
       studentId={studentData.dni}
       totalAmount={2500} // Monto base de matrícula
       onPaymentComplete={(payment) => {
-        console.log('Pago completado:', payment);
+        // Payment completed successfully
         setSelectedPaymentPlan(payment.planId);
         // Actualizar estado del proceso de matrícula
       }}

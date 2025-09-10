@@ -244,7 +244,7 @@ const UsersPage: React.FC = () => {
                 label="Buscar usuarios"
                 id="search-users"
                 name="search-users"
-                error={null}
+                error={undefined}
                 type="text"
                 placeholder="Buscar usuarios..."
                 value={searchTerm}
@@ -454,13 +454,13 @@ const UsersPage: React.FC = () => {
         isOpen={showRoleManager}
         onClose={() => setShowRoleManager(false)}
         onRoleCreated={(role) => {
-          console.log('Rol creado:', role);
+          // Role created successfully
         }}
         onRoleUpdated={(role) => {
-          console.log('Rol actualizado:', role);
+          // Role updated successfully
         }}
         onRoleDeleted={(roleId) => {
-          console.log('Rol eliminado:', roleId);
+          // Role deleted successfully
         }}
       />
 

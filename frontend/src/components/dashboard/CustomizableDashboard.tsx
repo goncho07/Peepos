@@ -210,7 +210,7 @@ const CustomizableDashboard: React.FC<CustomizableDashboardProps> = ({
   };
 
   const handleEditWidget = (widget: Widget) => {
-    console.log('Edit widget:', widget);
+    // Edit widget functionality
     // Implement widget editing logic
   };
 

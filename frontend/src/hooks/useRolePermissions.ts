@@ -158,7 +158,7 @@ export const useRefreshPermissions = () => {
       return true;
     },
     onSuccess: () => {
-      console.log('Permisos actualizados exitosamente');
+      // Permissions updated successfully
     },
     onError: (error) => {
       console.error('Error al actualizar permisos:', error);

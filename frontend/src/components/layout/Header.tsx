@@ -37,9 +37,9 @@ const Header: React.FC = () => {
   };
 
   const createOptions = [
-    { label: 'Nueva Matrícula', icon: UserPlus, action: () => console.log('Navigate to New Enrollment') },
-    { label: 'Nuevo Comunicado', icon: MessageSquarePlus, action: () => console.log('Open New Message Composer') },
-    { label: 'Registrar Incidencia', icon: AlertTriangle, action: () => console.log('Navigate to New Incident') },
+    { label: 'Nueva Matrícula', icon: UserPlus, action: () => {} },
+    { label: 'Nuevo Comunicado', icon: MessageSquarePlus, action: () => {} },
+    { label: 'Registrar Incidencia', icon: AlertTriangle, action: () => {} },
   ];
 
   return (

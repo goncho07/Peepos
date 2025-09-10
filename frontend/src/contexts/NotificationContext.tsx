@@ -53,12 +53,10 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({ chil
 
     socketInstance.on('connect', () => {
       setIsConnected(true);
-      console.log('Conectado al servidor de notificaciones');
     });
 
     socketInstance.on('disconnect', () => {
       setIsConnected(false);
-      console.log('Desconectado del servidor de notificaciones');
     });
 
     socketInstance.on('notification', (notification: Omit<Notification, 'id' | 'timestamp' | 'read'>) => {
@@ -225,4 +223,8 @@ export const useNotifications = () => {
   return context;
 };
 
-export default NotificationContext;
+// Export del contexto como named export
+export { NotificationContext };
+
+// Export default del provider para compatibilidad con Fast Refresh
+export default NotificationProvider;

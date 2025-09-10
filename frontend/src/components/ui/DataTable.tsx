@@ -5,18 +5,25 @@ interface Column {
   key: string;
   label: string;
   sortable?: boolean;
+  type?: 'date' | 'currency' | 'text';
   render?: (value: any, row: any) => React.ReactNode;
 }
 
 interface DataTableProps {
-  data?: any[];
+  data?: Record<string, any>[];
   columns?: Column[];
   title?: string;
   searchable?: boolean;
+  searchPlaceholder?: string;
   sortable?: boolean;
   paginated?: boolean;
   itemsPerPage?: number;
   className?: string;
+}
+
+interface SortConfig {
+  key: string | null;
+  direction: 'asc' | 'desc';
 }
 
 const DataTable: React.FC<DataTableProps> = ({
@@ -24,13 +31,14 @@ const DataTable: React.FC<DataTableProps> = ({
   columns = [],
   title = "Tabla de Datos",
   searchable = true,
+  searchPlaceholder = "Buscar...",
   sortable = true,
   paginated = true,
   itemsPerPage = 10,
   className = ""
 }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
+  const [sortConfig, setSortConfig] = useState<SortConfig>({ key: null, direction: 'asc' });
   const [currentPage, setCurrentPage] = useState(1);
 
   // Filtrar datos por búsqueda
@@ -48,6 +56,7 @@ const DataTable: React.FC<DataTableProps> = ({
     if (!sortConfig.key) return filteredData;
 
     return [...filteredData].sort((a, b) => {
+      if (!sortConfig.key) return 0;
       const aValue = a[sortConfig.key];
       const bValue = b[sortConfig.key];
 
@@ -70,24 +79,24 @@ const DataTable: React.FC<DataTableProps> = ({
 
   const totalPages = Math.ceil(sortedData.length / itemsPerPage);
 
-  const handleSort = (key) => {
+  const handleSort = (key: string) => {
     if (!sortable) return;
 
-    setSortConfig(prevConfig => ({
+    setSortConfig({
       key,
-      direction: prevConfig.key === key && prevConfig.direction === 'asc' ? 'desc' : 'asc'
-    }));
+      direction: sortConfig.key === key && sortConfig.direction === 'asc' ? 'desc' : 'asc'
+    });
   };
 
-  const getSortIcon = (columnKey) => {
+  const getSortIcon = (columnKey: string) => {
     if (sortConfig.key !== columnKey) return null;
     return sortConfig.direction === 'asc' ?
       <ChevronUpIcon className="w-4 h-4" /> :
       <ChevronDownIcon className="w-4 h-4" />;
   };
 
-  const getStatusBadge = (status) => {
-    const statusClasses = {
+  const getStatusBadge = (status: string) => {
+    const statusClasses: Record<string, string> = {
       'Activo': 'bg-green-100 text-green-800',
       'Inactivo': 'bg-red-100 text-red-800',
       'Pendiente': 'bg-yellow-100 text-yellow-800',
@@ -103,7 +112,7 @@ const DataTable: React.FC<DataTableProps> = ({
     );
   };
 
-  const renderCellContent = (item, column) => {
+  const renderCellContent = (item: Record<string, any>, column: Column) => {
     const value = item[column.key];
 
     if (column.render) {
@@ -142,7 +151,7 @@ const DataTable: React.FC<DataTableProps> = ({
               </div>
               <input
                 type="text"
-                placeholder="Buscar..."
+                placeholder={searchPlaceholder}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-sm"

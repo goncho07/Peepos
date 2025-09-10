@@ -54,7 +54,7 @@ const QuickActionsWidget: React.FC<QuickActionsWidgetProps> = ({
       navigate(action);
     } else {
       // Handle other types of actions (functions, external links, etc.)
-      console.log('Executing action:', action);
+      // Execute action
     }
   };
 

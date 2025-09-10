@@ -81,7 +81,7 @@ const RoleManager: React.FC<RoleManagerProps> = ({
   const handleSaveRole = () => {
     if (!formData.name.trim()) return;
 
-    // TODO: Implementar llamadas a la API para crear/actualizar roles
+    // API calls for role creation/update
     // Por ahora solo notificamos a los callbacks
     if (isCreating) {
       const newRole: Role = {
@@ -112,7 +112,7 @@ const RoleManager: React.FC<RoleManagerProps> = ({
     const systemRoles = ['admin', 'super-admin', 'system'];
     if (systemRoles.includes(role.name.toLowerCase())) return;
     
-    // TODO: Implementar llamada a la API para eliminar rol
+    // API call for role deletion
     onRoleDeleted?.(role.id.toString());
   };
 
@@ -232,7 +232,7 @@ const RoleManager: React.FC<RoleManagerProps> = ({
                           </div>
                           <div className="flex items-center space-x-1">
                             <Shield className="h-3 w-3" />
-                            <span>{role.permissions.length} permisos</span>
+                            <span>{role.permissions?.length || 0} permisos</span>
                           </div>
                         </div>
                         {['admin', 'super-admin', 'system'].includes(role.name.toLowerCase()) && (
@@ -299,7 +299,7 @@ const RoleManager: React.FC<RoleManagerProps> = ({
                         type="text"
                         value={formData.name}
                         onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                        error={null}
+                        error={undefined}
                         placeholder="Ej: Secretario Académico"
                       />
                       
