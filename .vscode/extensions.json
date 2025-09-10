@@ -1,0 +1,28 @@
+{
+  "recommendations": [
+    "phpactor.vscode-phpactor",
+    "felixfbecker.php-intellisense",
+    "xdebug.php-debug",
+    "junstyle.php-cs-fixer",
+    "neilbrayfield.php-docblocker",
+    "onecentlin.laravel-blade",
+    "mehedidracula.php-namespace-resolver",
+    "vscode-icons-team.vscode-icons",
+    "ms-vscode.vscode-json",
+    "bradlc.vscode-tailwindcss",
+    "esbenp.prettier-vscode",
+    "ms-vscode.vscode-typescript-next",
+    "formulahendry.auto-rename-tag",
+    "christian-kohler.path-intellisense",
+    "ms-vscode.vscode-eslint",
+    "ritwickdey.liveserver",
+    "ms-vscode.vscode-react",
+    "ms-vscode.vscode-css"
+  ],
+  "unwantedRecommendations": [
+    "bmewburn.vscode-intelephense-client",
+    "devsense.phptools-vscode",
+    "devsense.composer-php-vscode",
+    "devsense.profiler-php-vscode"
+  ]
+}

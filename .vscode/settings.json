@@ -1,0 +1,68 @@
+{
+  "php.suggest.basic": false,
+  "php.validate.enable": false,
+  "intelephense.enable": false,
+  "intelephense.diagnostics.enable": false,
+  "intelephense.completion.enable": false,
+  "phpactor.enable": true,
+  "phpactor.path": "phpactor",
+  "phpactor.enableCompletion": true,
+  "phpactor.enableHover": true,
+  "phpactor.enableDefinition": true,
+  "phpactor.enableReferences": true,
+  "files.associations": {
+    "*.php": "php",
+    "*.blade.php": "blade"
+  },
+  "emmet.includeLanguages": {
+    "blade": "html",
+    "php": "html"
+  },
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "tailwindCSS.includeLanguages": {
+    "php": "html",
+    "blade": "html"
+  },
+  "tailwindCSS.experimental.classRegex": [
+    ["class(?:Name)?\\s*[:=]\\s*[\"']([^\"']*)[\"']", "([^\"'\\s]*)"]
+  ],
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/vendor": true,
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/storage/logs": true,
+    "**/storage/framework/cache": true,
+    "**/storage/framework/sessions": true,
+    "**/storage/framework/views": true,
+    "**/bootstrap/cache": true,
+    "**/.phpunit.result.cache": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/vendor": true,
+    "**/storage": true,
+    "**/public/build": true,
+    "**/dist": true,
+    "**/bootstrap/cache": true
+  },
+  "php-cs-fixer.executablePath": "php-cs-fixer",
+  "php-cs-fixer.onsave": true,
+  "php-cs-fixer.rules": "@PSR12",
+  "php-docblocker.gap": true,
+  "php-docblocker.returnGap": true,
+  "namespaceResolver.autoSort": true,
+  "namespaceResolver.sortAlphabetically": true,
+  "xdebug.mode": "debug",
+  "php.debug.executablePath": ".\\php-8.3.25\\php.exe",
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  "css.lint.unknownAtRules": "ignore",
+  "tailwindCSS.emmetCompletions": true,
+  "tailwindCSS.validate": true,
+  "tailwindCSS.colorDecorators": true
+}

@@ -1,0 +1,95 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: sge_postgres
+    environment:
+      POSTGRES_DB: sge_ricardo_palma
+      POSTGRES_USER: sge_user
+      POSTGRES_PASSWORD: sge_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - sge_network
+
+  # Redis Cache & Queue
+  redis:
+    image: redis:7-alpine
+    container_name: sge_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - sge_network
+
+  # Laravel Backend API
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: sge_backend
+    working_dir: /var/www/html
+    volumes:
+      - ./backend:/var/www/html
+      - ./backend/storage:/var/www/html/storage
+    ports:
+      - "8000:8000"
+    environment:
+      - DB_CONNECTION=pgsql
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_DATABASE=sge_ricardo_palma
+      - DB_USERNAME=sge_user
+      - DB_PASSWORD=sge_password
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - sge_network
+
+  # React Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: sge_frontend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      - VITE_API_URL=http://localhost:8000/api
+    depends_on:
+      - backend
+    networks:
+      - sge_network
+
+  # Nginx Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    container_name: sge_nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - backend
+      - frontend
+    networks:
+      - sge_network
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  sge_network:
+    driver: bridge

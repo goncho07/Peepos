@@ -1,0 +1,228 @@
+/* Estilos principales de la aplicación */
+.App {
+  min-height: 100vh;
+  background-color: #f9fafb;
+}
+
+/* Estilos para transiciones suaves */
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 300ms ease-in;
+}
+
+/* Estilos para el layout responsive */
+@media (max-width: 768px) {
+  .App {
+    padding: 0;
+  }
+}
+
+/* Estilos para elementos de formulario */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-error {
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* Estilos para notificaciones */
+.notification-enter {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.notification-enter-active {
+  transform: translateX(0);
+  opacity: 1;
+  transition: all 300ms ease-out;
+}
+
+.notification-exit {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.notification-exit-active {
+  transform: translateX(100%);
+  opacity: 0;
+  transition: all 300ms ease-in;
+}
+
+/* Estilos para tablas responsivas */
+.table-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 640px) {
+  .table-container {
+    margin: 0 -1rem;
+  }
+  
+  .table-container table {
+    min-width: 600px;
+  }
+}
+
+/* Estilos para el sidebar móvil */
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 40;
+}
+
+.sidebar-mobile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 16rem;
+  background-color: white;
+  z-index: 50;
+  transform: translateX(-100%);
+  transition: transform 300ms ease-in-out;
+}
+
+.sidebar-mobile.open {
+  transform: translateX(0);
+}
+
+/* Estilos para elementos de carga */
+.loading-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+/* Estilos para elementos interactivos */
+.interactive:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 200ms ease;
+}
+
+.interactive:active {
+  transform: translateY(0);
+}
+
+/* Estilos para focus visible */
+.focus-visible:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Estilos para elementos disabled */
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Estilos para texto truncado */
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Estilos para contenido scrolleable */
+.scrollable {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f1f5f9;
+}
+
+.scrollable::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollable::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 3px;
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.scrollable::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Estilos para animaciones personalizadas */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.slide-in-right {
+  animation: slideInRight 300ms ease-out;
+}
+
+.slide-out-right {
+  animation: slideOutRight 300ms ease-in;
+}
+
+/* Estilos para modo oscuro (preparación futura) */
+@media (prefers-color-scheme: dark) {
+  .App {
+    background-color: #111827;
+    color: #f9fafb;
+  }
+}
+
+/* Estilos para impresión */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .App {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .sidebar-mobile,
+  .sidebar-overlay {
+    display: none !important;
+  }
+}
